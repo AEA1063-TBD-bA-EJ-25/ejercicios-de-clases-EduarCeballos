@@ -1,10 +1,11 @@
-CREATE DATABASE escuelita 
 
-go
+CREATE DATABASE escuelita;
 
-use escuelita
+go;
 
-create TABLE Persona (
+use escuelita;
+
+create TABLE persona (
     CURP CHAR(18) NOT NULL PRIMARY KEY,
     Nombre nvarchar(50) NOT NULL,
     Direccion NVARCHAR(100)NULL,
@@ -57,54 +58,96 @@ INSERT into Alumno(CURP, NumeroDeControl, ClaveCarrera)
         join Alumno on Persona.CURP = Alumno.CURP
     select * from Alumno
 
-    select * from Persona
-    select * from Carrera
-
     create TABLE MalaPersona (
-    IdPersona int not null IDENTITY PRIMARY key,
+    idPersona int not null IDENTITY Primary Key,
     CURP CHAR(18) NOT NULL,
     Nombre nvarchar(50) NOT NULL,
     Direccion NVARCHAR(100)NULL,
     Nacimiento DATE NOT NULL,
-    )
-    select * from MalaPersona 
-    
-    INSERT into MalaPersona(CURP, Nombre, Direccion, Nacimiento)
-    VALUES ('J520FR', 'johane sacrebleu','por alla', '2003-04-05')
+)
 
-CREATE TABLE empleado(
+insert into MalaPersona (CURP, Nombre, Direccion, Nacimiento)
+    VALUES ('JS20FR', 'Johane Sacrebleu', 'Por allá', '2003-04-05')
+
+    select * from MalaPersona
+
+    drop table MalaPersona
+
+create table empleado(
     idEmpleado int not null PRIMARY KEY,
-    nombre NVARCHAR(50) not null,
+    nombre NVARCHAR(50)NOT NULL,
     sueldo money DEFAULT 1500
 )
-INSERT INTO empleado(idEmpleado, nombre, sueldo)
-VALUES(1, 'Felipe de jesus', 2000)
 
-INSERT INTO empleado(idEmpleado, nombre)
-VALUES (2, 'chuerk' )  
+insert into empleado (idEmpleado, nombre, sueldo)
+    values (1, 'Felipe de jesus', 2000)
 
-SELECT * FROM empleado
+select * from empleado;
 
-CREATE TABLE personita(
-    idEmpleado int not null PRIMARY key,
-    nombre NVARCHAR(50) not null,
+insert into empleado(idEmpleado, nombre)
+    Values (2, 'Chuerk')
+
+SELECT * from empleado;
+
+create table personita(
+    idEmpledo int not null PRIMARY KEY,
+    nombre NVARCHAR(50)NOT NULL,
     sueldo money DEFAULT 1500,
-    telefono VARCHAR(20) check (telefono like '667(0-9) (0-9) (0-9)')
+    telefono varchar(20) check ( telefono like '667[0-9][0-9][0-9]')
 )
-INSERT into personita VALUES(1, 'juana', null, '667123')
 
-ALTER TABLE empleado
-    add sexo CHAR(1) null check (sexo in('H', 'M'))
-
-SELECT * from empleado
-insert into empleado(idEmpleado, nombre, sexo) values (3, 'Alexis Jara Rodriguez', 'H')
-insert into empleado(idEmpleado, nombre, sexo) values (4, 'Matilde Sandoval', 'M')
+insert into personita values (1, 'Juana', null, '667123')
 
 alter table empleado
-drop CONSTRAINT CK_empleado_sexo_3F466844
+    add sexo char(1) null check (sexo in ('M','H'))
 
-insert into empleado (idEmpleado, nombre, sexo) values(4, 'Matilde Sandoval', 'H')
-SELECT * FROM empleado
+insert into empleado  (idEmpleado, nombre, sexo)values (3, 'Alexis Jara Rodriguez','R')
+insert into empleado  (idEmpleado, nombre, sexo)values (4, 'Matilde Sandoval','F')
 
-ALTER table empleado
-    ADD CONSTRAINT sexonuevaopciones
+
+    select * from empleado;
+    select * from personita;
+
+    alter table empleado
+        drop CONSTRAINT CK__empleado__sexo__3F466844
+
+    insert into empleado (idEmpleado, nombre, sexo) values (5, 'Refugio Saldivar', 'F')
+
+    insert into empleado (idEmpleado, nombre, sexo) values (6, 'Delia Barantes', 'R')
+
+    alter TABLE empleado
+        add nacimiento date not null 
+
+    alter table empleado
+        add RFC char(13) NULL
+
+    alter table empleado
+        add CONSTRAINT rfc_unico unique(RFC) 
+       -- check ( date < getDate)
+
+    update empleado
+        set RFC = 'CCC555'
+        where idEmpledo = 5
+
+    select * from empleado
+
+    insert into empleado (idEmpledo, nombre, sexo, rfc) values (6, 'Refugio Saldivar', 'F', 'CCC555')
+
+    create table Departamento (
+        idDepartamento int not null primary key,
+        Nombre nvarchar(30)
+    )
+
+    insert into Departamento (idDepartamento, Nombre)
+        values (1, 'ventas'), (2, 'MKT'), (3, 'TIC')
+
+    select * from Departamento
+
+    alter table empleado
+        add TrabajaEn int null FOREIGN key references departamento (idDepartamento) 
+
+    select * from empleado
+
+    update empleado
+        set TrabajaEn = 3
+        where idEmpledo = 4
