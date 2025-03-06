@@ -151,3 +151,4 @@ insert into empleado  (idEmpleado, nombre, sexo)values (4, 'Matilde Sandoval','F
     update empleado
         set TrabajaEn = 3
         where idEmpledo = 4
+s
