@@ -1,4 +1,3 @@
-
 CREATE DATABASE escuelita;
 
 go;
@@ -151,4 +150,35 @@ insert into empleado  (idEmpleado, nombre, sexo)values (4, 'Matilde Sandoval','F
     update empleado
         set TrabajaEn = 3
         where idEmpledo = 4
-s
+
+    delete from Departamento
+        where idDepartamento = 2
+
+    alter table empleado 
+        drop CONSTRAINT FK__empleado_trabaj__412EB2B6
+
+    alter TABLE empleado
+        add CONSTRAINT FK__empleado_TrabajaEn FOREIGN key (TrabajaEn) REFERENCES Departamento (idDepartamento)
+            on delete set null
+
+     delete from Departamento
+        where idDepartamento = 2
+
+        select * from empleado
+
+    create TABLE Familiares (
+        nombre NVARCHAR(50) not null, 
+        idEmpleado int not null FOREIGN key REFERENCES empleado(idempleado) on delete CASCADE
+    )
+
+    insert into Familiares (nombre, idEmpleado)
+        values('Gertrudis', 1), ('Daniela', 1), ('Manuel', 2)
+
+    SELECT * FROM empleado
+    SELECT * FROM Familiares
+    
+    delete from empleado    
+        where idEmpledo = 1
+
+        select * from Familiares
+
