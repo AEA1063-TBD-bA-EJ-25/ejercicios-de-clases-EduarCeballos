@@ -1,4 +1,5 @@
-CREATE DATABASE escuelita;
+CREATE Database escuelita
+
 
 go;
 
@@ -182,3 +183,15 @@ insert into empleado  (idEmpleado, nombre, sexo)values (4, 'Matilde Sandoval','F
 
         select * from Familiares
 
+SELECT SYSDATETIME()
+SELECT SYSDATETIMEOFFSET()
+SELECT SYSUTCDATETIME() 
+SELECT (DATENAME(MONTH, nacimiento)) from Persona
+SELECT nacimiento, DATENAME(MONTH, nacimiento), (DAY( nacimiento)) from Persona
+SELECT DATENAME(MONTH, nacimiento), DATEPART(MONTH, nacimiento) from Persona
+select DATEDIFF(YEAR, GETDATE(), nacimiento) from Persona
+select DATEDIFF(MONTH, GETDATE(), nacimiento) from Persona
+select DATEDIFF(DAY, GETDATE(), nacimiento) from Persona
+
+select DATEDIFF(YEAR, nacimiento, GETDATE()) as edad from Persona
+SELECT DATEADD(WEEK, 1, GETDATE())
