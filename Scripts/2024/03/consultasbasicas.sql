@@ -73,3 +73,29 @@ select productid, productname, unitprice, CategoryID
     where UnitPrice Between 30 and 40
         and CategoryID = 2
 
+SELECT * from Products, Categories
+
+sELECT * from Products
+join Categories on Products.CategoryID = Categories.CategoryID
+
+SELECT ProductID, ProductName, UnitPrice, CategoryName from Products
+join Categories on Products.CategoryID = Categories.CategoryID
+
+SELECT * FROM Orders
+    JOIN Customers on Customers.CustomerID = Orders.CustomerID
+
+SELECT orderid, lastname from Orders
+    join Employees on Employees.EmployeeID = Employees.EmployeeID
+
+SELECT orderid, lastname, Companyname from Orders
+    join Employees on Employees.EmployeeID = Employees.EmployeeID
+    join Customers on Customers.CustomerID = Customers.CustomerID
+
+SELECT orderid, lastname, Companyname, orderdate from Orders
+join Employees on Employees.EmployeeID = Employees.EmployeeID
+join Customers on Customers.CustomerID = Customers.CustomerID
+where orderid = 10252
+
+SELECT orderid, lastname, Companyname, RequiredDate, ShippedDate, DATEDIFF() from Orders
+    join Employees on Employees.EmployeeID = Employees.EmployeeID
+    join Customers on Customers.CustomerID = Customers.CustomerID
