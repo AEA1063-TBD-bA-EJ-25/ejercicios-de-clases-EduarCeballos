@@ -99,3 +99,44 @@ where orderid = 10252
 SELECT orderid, lastname, Companyname, RequiredDate, ShippedDate, DATEDIFF() from Orders
     join Employees on Employees.EmployeeID = Employees.EmployeeID
     join Customers on Customers.CustomerID = Customers.CustomerID
+
+SELECT COUNT(*) from Products;
+SELECT MAX(unitprice) from Products;
+SELECT min(unitprice) from Products;
+SELECT AVG(unitprice) from Products;
+SELECT Sum(unitprice) from Products;
+
+SELECT categoryid, AVG(unitprice) from Products
+group by CategoryID
+order by AVG(UnitPrice) DESC
+
+SELECT categoryid, AVG(UnitPrice) as PrecioPromedio from Products
+group by CategoryID
+order by PrecioPromedio DESC
+
+SELECT CategoryID, COUNT(*) as cantidad from Products
+group by categoryid
+order by cantidad
+
+select unitprice * 1.10 as NuevoPrecio from Products
+
+select * from Products
+
+SELECT COUNT(*) from Products
+WHERe Discontinued = 1
+
+select * from Orders
+
+SELECT * from [Order Details]
+
+SELECT COUNT(*) from [Order Details]
+    where orderid = 10250
+
+SELECT sum(unitprice) from [Order Details]
+    where OrderID = 10250
+
+SELECT unitprice, Quantity, unitprice * Quantity from [Order Details]
+WHERE OrderID = 10250
+
+SELECT sum(unitprice * Quantity - Discount * UnitPrice * Quantity) from [Order Details]
+WHERE OrderID = 10250

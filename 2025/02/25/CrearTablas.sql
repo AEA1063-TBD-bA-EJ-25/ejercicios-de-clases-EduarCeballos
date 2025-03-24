@@ -1,5 +1,4 @@
-CREATE Database escuelita
-
+\
 
 go;
 
