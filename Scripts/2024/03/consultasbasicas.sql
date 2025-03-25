@@ -140,3 +140,23 @@ WHERE OrderID = 10250
 
 SELECT sum(unitprice * Quantity - Discount * UnitPrice * Quantity) from [Order Details]
 WHERE OrderID = 10250
+
+SELECT * from [Order Details] od
+join Products P on P.Productid = od.productid
+WHERE CategoryID = 1
+
+select * FROM Categories
+
+SELECT * from [Order Details] od
+join Products P on P.Productid = od.productid
+join Categories c on c.CategoryID = P.CategoryID
+WHERE CategoryName like 'Beverages'
+
+SELECT * from [Order Details] od
+join Products P on P.Productid = od.productid
+join Categories c on c.CategoryID = P.CategoryID
+join orders o on o.OrderID = od.OrderID
+WHERE CategoryName like 'Beverages' and OrderDate = '1997'
+
+select 
+sum(qu)

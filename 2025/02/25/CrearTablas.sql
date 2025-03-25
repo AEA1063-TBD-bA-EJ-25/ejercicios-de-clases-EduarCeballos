@@ -1,5 +1,4 @@
-\
-
+CREATE DATABASE escuelita
 go;
 
 use escuelita;
