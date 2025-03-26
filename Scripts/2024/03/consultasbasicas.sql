@@ -150,13 +150,54 @@ select * FROM Categories
 SELECT * from [Order Details] od
 join Products P on P.Productid = od.productid
 join Categories c on c.CategoryID = P.CategoryID
-WHERE CategoryName like 'Beverages'
+WHERE CategoryName like 'Beverages' 
 
 SELECT * from [Order Details] od
-join Products P on P.Productid = od.productid
+join Products P on P.Productid = od.productid /* SE JUNTA LAS TABLSA CON EL JOIN*/
 join Categories c on c.CategoryID = P.CategoryID
 join orders o on o.OrderID = od.OrderID
 WHERE CategoryName like 'Beverages' and OrderDate = '1997'
 
-select 
-sum(qu)
+select sum(Quantity*(1-Discount)*od.UnitPrice) as total
+from [Order Details] od 
+JOIN Products P on P.ProductID = ProductID
+join Categories c on c.CategoryID = P.CategoryID
+JOIN Orders o on o.OrderID = od.orderid
+WHERE c.CategoryName = 'Beverages'
+and YEAR(orderdate) = 1997
+
+-- TAREA 'Cuanto se vendio en 1997 por cada categoria
+select c.CategoryName, SUM(od.UnitPrice * od.Quantity * (1-od.Discount)) AS TotalSales
+from [Order Details] od 
+JOIN Orders o on od.OrderID = o.OrderID
+JOIN Products P on od.ProductID = P.ProductID
+join Categories c on c.CategoryID = c.CategoryID
+WHERE YEAR(OrderDate) = 1997
+GROUP BY c.CategoryName
+ORDER by TotalSales DESC;
+
+-- consulta cuanto se vendio cada mes en cada categoria 
+
+select DATENAME(MONTH, O.OrderDate), C.CategoryName, SUM(od.UnitPrice * od.Quantity * (1-od.Discount)) AS TotalSales 
+from [Order Details] od 
+JOIN Orders o on od.OrderID = o.OrderID
+JOIN Products P on od.ProductID = P.ProductID
+join Categories c on c.CategoryID = c.CategoryID
+WHERE YEAR(OrderDate) = 1997
+GROUP BY DATEPART (MONTH, o.OrderDate), DATENAME(MONTH, o.OrderDate), c.CategoryName  
+ORDER by DATEPART(MONTH, o.orderdate), TotalSales DESC; --date part ES PARA ODERNAR LOS NUMEROS DE MENOR A MAYOR (EN ESTE CASO ORDENA LOS MESES)
+
+--USALA PARA CONSULTAR EL NOMBRE DE LAS TABLAS
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES; 
+
+--agregarlo con los nombres de los proveedores
+select DATENAME(MONTH, O.OrderDate), C.CategoryName, SUM(od.UnitPrice * od.Quantity * (1-od.Discount)) AS TotalSales 
+from [Order Details] od 
+JOIN Orders o on od.OrderID = o.OrderID
+JOIN Products P on od.ProductID = P.ProductID
+join Categories c on c.CategoryID = c.CategoryID
+JOIN Employees e on 
+WHERE YEAR(OrderDate) = 1997
+GROUP BY DATEPART (MONTH, o.OrderDate), DATENAME(MONTH, o.OrderDate), c.CategoryName  
+ORDER by DATEPART(MONTH, o.orderdate), TotalSales DESC;
+
