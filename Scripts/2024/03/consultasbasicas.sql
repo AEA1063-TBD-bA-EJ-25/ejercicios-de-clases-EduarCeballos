@@ -201,3 +201,10 @@ WHERE YEAR(OrderDate) = 1997
 GROUP BY DATEPART (MONTH, o.OrderDate), DATENAME(MONTH, o.OrderDate), c.CategoryName  
 ORDER by DATEPART(MONTH, o.orderdate), TotalSales DESC;
 
+--cuales ordenes han sido menores de 500 dolares
+Select orderid,
+        sum(od.UnitPrice * Quantity - (Discount * od.UnitPrice * Quantity)) as importe from [Order Details] od
+        group BY orderid
+          having  sum(od.UnitPrice * Quantity - (Discount * od.UnitPrice * Quantity)) < 500
+        order by importe
+      
