@@ -208,3 +208,27 @@ Select orderid,
           having  sum(od.UnitPrice * Quantity - (Discount * od.UnitPrice * Quantity)) < 500
         order by importe
       
+--consulta para conocer el precio maximo y el nombre
+
+DECLARE @maximo money
+SELECT @maximo = MAX (unitprice) from Products
+
+SELECT ProductName, UnitPrice FROM Products -- esti es una subconsulta de la consulta
+WHERE UnitPrice = (SELECT MAX(UnitPrice) FROM Products)
+
+--- consulta para saber que customers realizaron compras despues del 1/1/95
+
+select CompanyName from customers
+join orders on orders.CustomerID = customers.CustomerID
+WHERE orderdate > '1/1/95'
+
+
+-----------
+select CompanyName, ContactName
+From customers C
+WHERE EXISTS
+(
+    select * from orders o
+    where c.CustomerID = o.CustomerID
+    and orderdate = '1/1/1995'
+)
