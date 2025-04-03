@@ -39,3 +39,7 @@ WHERE L1.ID1 = l2.id2
 --for every situation where student A likes student B, but student B likes different students C, return
 --the names and grades of A,B,C
 
+SELECT * from Likes L1 
+
+INNER JOIN likes L2 on L1.ID2 = l2.ID1
+where L1.ID1 <> L2.ID2
