@@ -232,3 +232,7 @@ WHERE EXISTS
     where c.CustomerID = o.CustomerID
     and orderdate = '1/1/1995'
 )
+
+
+
+

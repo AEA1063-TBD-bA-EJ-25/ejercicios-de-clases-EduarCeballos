@@ -1,4 +1,4 @@
-use social
+use social 
 SELECT * from Highschooler
 
 SELECT * FROM Friend
