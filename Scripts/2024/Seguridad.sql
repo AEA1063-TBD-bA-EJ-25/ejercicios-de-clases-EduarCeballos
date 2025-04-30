@@ -42,19 +42,19 @@ CREATE table ventas.venta(
     clienteid INT not NULL
 
 )
-
-CREATE table ventas.detalle_venta(
+   CREATE table ventas.detalle_venta(
     productoid int not NULL,
     cantidad FLOAT,
     precio money,
     PRIMARY KEY (folio, productoid)
 )
 
-CREATE table recursoshumanos.empleado(
-    empleadoid int not null PRIMARY KEY
-    nombre NVARCHAR {50} not null,
-    apellidos NVARCHAR {50} not null,
+CREATE table recursoshumanos.empleado ( 
+    empleadoid int not null PRIMARY KEY,
+    nombre NVARCHAr (50) not NULL,
+    apellidos NVARCHAR (50) not null, 
     depatamentoid int 
+
 )
 
 CREATE TABLE recursoshumanos.depatamento(
