@@ -17,3 +17,40 @@ UNIDAD 3 PROCEDIMIENTO ALMACENADO
  - Minimiza el uso de SP temporales 
 
  -* EL PREFIJO SP es propio del procedimiento almacenado no es recomendable utilizarlo en consultas de otras bases de datos. 
+
+ --EJEMPLO DE CREAR UN PROCEDIMIENTO CON LA CLAUSULA CREATE PROCEDURE
+
+use pubs
+GO
+CREATE PROC dbo.overdue_books
+AS
+    SELECT *
+    FROM dbo.loan
+where due_date > GETDATE()
+
+
+**VARIABLE GLOBAL @@ERROR**
+@@ERROR = 0, no existe error
+@@ERROR <>, existe un error.
+
+**VARIABLE RAISERROR**
+Resuelve un mensaje de error definido 
+
+**VARIABLE DE NUMERO DE ERROR**
+
+**VARIABLE DE SEVERIDAD**
+
+**VARIABLE DE ESTADO**
+
+**VARIABLE DE MENSAJE**
+es un texto que describe el error
+
+
+**CURSORES**
+- es una entidad que se relaciona con un conjunto de resultados y establece una posicion sobre un solo renglon dentro de ese conjunto
+- el cursor es un mecanismo que permite interactuar sobre un subconjunto de RESULT SET
+
+- posicionarse en un renglon especifico result set
+- recuperar un renglon a partir de una posicion del result set
+- modificar renglones del result set
+

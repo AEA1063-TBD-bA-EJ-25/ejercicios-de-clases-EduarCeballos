@@ -1,4 +1,4 @@
-CREATE DATABASE escuelita;
+create DATABASE escuelita
 go;
 
 use escuelita;
